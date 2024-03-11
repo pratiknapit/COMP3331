@@ -1,0 +1,84 @@
+Exercise 1: nslookup
+
+1. IP address of www.netflix.com is given as multiple addresses:
+Name:	apiproxy-website-nlb-prod-2-e98cb8cf33ff3581.elb.us-west-2.amazonaws.com
+Address: 44.242.60.85
+Name:	apiproxy-website-nlb-prod-2-e98cb8cf33ff3581.elb.us-west-2.amazonaws.com
+Address: 44.234.232.238
+Name:	apiproxy-website-nlb-prod-2-e98cb8cf33ff3581.elb.us-west-2.amazonaws.com
+Address: 44.237.234.25
+Name:	apiproxy-website-nlb-prod-2-e98cb8cf33ff3581.elb.us-west-2.amazonaws.com
+Address: 2600:1f14:62a:de82:822d:a423:9e4c:da8d
+Name:	apiproxy-website-nlb-prod-2-e98cb8cf33ff3581.elb.us-west-2.amazonaws.com
+Address: 2600:1f14:62a:de80:69a8:7b12:8e5f:855d
+Name:	apiproxy-website-nlb-prod-2-e98cb8cf33ff3581.elb.us-west-2.amazonaws.com
+Address: 2600:1f14:62a:de81:b848:82ee:2416:447e
+
+There are 2 versions of IP addresses shown above:
+    - IPv4, which is a 32-bit number expressed in decimal form.
+    - IPv6, a newer 128-bit version, which allows for a greater number of unique addresses, 
+    and expressed with the columns seperated.
+
+The reason that Netflix have multiple IP addresses is because Netflix has to distribute traffic
+across multiple servers to balance the load. Since Netflix is a large online service, it uses
+Content Delivery Networks (CDNs) to deliver content efficiently worldwide. CDNs use a network
+of servers to provide fast delivery of internet content, which involves using multiple 
+IP addresses.
+
+2. This IP address is for the localhost and it is special for a number of reasons:
+    - Loopback interface: localhost address points to the loopback network interface. This means that network
+    traffic sent to this address is looped back to the local machine, allowing the computer to 
+    talk to itself.
+
+    - Developers can use localhost for testing and devloping software because it simulates
+    network communication wihtout the network overhead and without leving the system.
+
+
+Exercise 2: ping
+
+www.cse.unsw.edu.au --> reachable. 
+www.getfittest.com.au --> unreachable. The error from the when searching URL on chrome responds
+    DNS_PROBE_FINISHED_NXDOMAIN error. This is most likely due to DNS server problems, since
+    ping is dont able to send its packets, then there is most likely problem with DNS server or
+    the domain does not exist.
+www.mit.edu --> reachable.
+www.intel.com.au --> reachable.
+www.tpg.com.au --> unreachable by ping, 100% packet loss. But reachable by web browser. Possible
+    reasons include firewall or security settings, or ICMP blocking. 
+www.hola.hp --> unreachable as "name or service unknown". This is most likely due to incorrect
+    host name and instead of hp should be .com.
+www.amazon.com --> reachable.
+www.tsinghua.edu.cn --> reachable.
+www.kremlin.ru --> unreachable. .ru is a the country code for Russai and is a must have for all 
+    russain domain names.
+8.8.8.8 --> reachable.
+
+
+Exercise 3: traceroute
+
+1. Total of 25 routers. Between routers 9 and 10 the packet cross the Pacific Ocean, since
+    there is a relatively large propagation delay between these two routers. I also used
+    "yougetyoursignal" which showed that the IP address of router 10 is located in United States.
+
+2. All 3 paths to host follows the same path below before diverging.
+
+ 1  cserouter1-server.orchestra.cse.unsw.EDU.AU (129.94.242.251)  0.057 ms  0.048 ms  0.047 ms
+ 2  129.94.39.17 (129.94.39.17)  0.858 ms  0.873 ms  0.868 ms
+ 3  172.17.31.154 (172.17.31.154)  1.590 ms  1.557 ms  1.978 ms
+ 4  po-3-1902.ombcr1.gw.unsw.edu.au (129.94.24.20)  1.138 ms  1.234 ms  1.200 ms
+ 5  unswbr1-te-1-9.gw.unsw.edu.au (149.171.255.101)  1.136 ms  1.152 ms unswbr1-te-2-13.gw.unsw.edu.au (149.171.255.105)  1.110 ms
+ 6  138.44.5.0 (138.44.5.0)  3.971 ms  3.377 ms  3.421 ms
+
+The router that all 3 paths diverge belongs to Australian Academic and Research Network. 
+Also known as AARNet Pty Ltd. 
+
+3. 
+IP address of www.speedtest.com.sg = 202.150.221.170
+IP address of www.telstra.net = 203.50.5.178
+
+Hostname IP address = 129.94.242.120
+While some addresses look similar for packet paths, the forward and reverse paths do not
+go through the same routers. This is because of different routing policies and routing protocol used.
+Since routing decisions are made dynamically based on the network's current state, changes in network
+topology, such as link failures, congestions or others, can cause routers to redirect traffic 
+along a different path.
